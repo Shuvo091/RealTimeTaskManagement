@@ -19,6 +19,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RealTimeTaskManagement.Data\RealTimeTaskManagement.Data.csproj" />
+    <ProjectReference Include="..\RealTimeTaskManagement.Models\RealTimeTaskManagement.Models.csproj" />
+    <ProjectReference Include="..\RealTimeTaskManagement.Services\RealTimeTaskManagement.Services.csproj" />
   </ItemGroup>
 
 </Project>

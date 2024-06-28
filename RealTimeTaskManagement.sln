@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeTaskManagement.Serv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeTaskManagement.Data", "RealTimeTaskManagement.Data\RealTimeTaskManagement.Data.csproj", "{17BEF2B3-EB62-4E2A-B9E2-177EF5D126FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeTaskManagement.Models", "RealTimeTaskManagement.Models\RealTimeTaskManagement.Models.csproj", "{7AA83556-0497-49FB-A429-2409DCD735BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{17BEF2B3-EB62-4E2A-B9E2-177EF5D126FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17BEF2B3-EB62-4E2A-B9E2-177EF5D126FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17BEF2B3-EB62-4E2A-B9E2-177EF5D126FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AA83556-0497-49FB-A429-2409DCD735BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AA83556-0497-49FB-A429-2409DCD735BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AA83556-0497-49FB-A429-2409DCD735BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AA83556-0497-49FB-A429-2409DCD735BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
