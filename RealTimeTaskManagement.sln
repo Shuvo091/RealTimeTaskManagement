@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34322.80
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeTaskManagement.Presentation", "RealTimeTaskManagement.Presentation\RealTimeTaskManagement.Presentation.csproj", "{79937449-AE94-474E-9C30-273A82F2DB64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeTaskManagement.Services", "RealTimeTaskManagement.Services\RealTimeTaskManagement.Services.csproj", "{F5917E75-8DBE-442C-A1AF-AC5871AFDF42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeTaskManagement.Data", "RealTimeTaskManagement.Data\RealTimeTaskManagement.Data.csproj", "{17BEF2B3-EB62-4E2A-B9E2-177EF5D126FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{79937449-AE94-474E-9C30-273A82F2DB64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79937449-AE94-474E-9C30-273A82F2DB64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79937449-AE94-474E-9C30-273A82F2DB64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79937449-AE94-474E-9C30-273A82F2DB64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5917E75-8DBE-442C-A1AF-AC5871AFDF42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5917E75-8DBE-442C-A1AF-AC5871AFDF42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5917E75-8DBE-442C-A1AF-AC5871AFDF42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5917E75-8DBE-442C-A1AF-AC5871AFDF42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17BEF2B3-EB62-4E2A-B9E2-177EF5D126FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17BEF2B3-EB62-4E2A-B9E2-177EF5D126FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17BEF2B3-EB62-4E2A-B9E2-177EF5D126FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17BEF2B3-EB62-4E2A-B9E2-177EF5D126FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8368080C-BBC3-487F-8820-FA8D5DD30A97}
+	EndGlobalSection
+EndGlobal
