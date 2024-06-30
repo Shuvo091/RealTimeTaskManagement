@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using RealTimeTaskManagement.Data.Entities
-@inject SignInManager<User> SignInManager
-@inject UserManager<User> UserManager
+@inject SignInManager<UserEntity> SignInManager
+@inject UserManager<UserEntity> UserManager
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))

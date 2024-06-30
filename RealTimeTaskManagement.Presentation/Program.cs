@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<RealTimeTaskManagementDbContext>(options =>
     options.UseSqlServer(connectionString));
-builder.Services.AddIdentity<User, IdentityRole>(
+builder.Services.AddIdentity<UserEntity, IdentityRole>(
             options =>
             {
                 options.SignIn.RequireConfirmedAccount = true;

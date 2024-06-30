@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using RealTimeTaskManagement.Data.Entities;
 using RealTimeTaskManagement.Data.Repositories;
+using RealTimeTaskManagement.Models.DomainModels;
 using RealTimeTaskManagement.Models.Dto;
 using RealTimeTaskManagement.Services.Interfaces;
 using System;
@@ -25,13 +26,15 @@ namespace RealTimeTaskManagement.Services
         public IEnumerable<TicketDto> GetAllTasks()
         {
             var ticket = _taskRepository.GetAll();
-            var ticketDto = _mapper.Map<IEnumerable<TicketDto>>(ticket);
+            var ticketDM = _mapper.Map<IEnumerable<TicketDM>>(ticket);
+            var ticketDto = _mapper.Map<IEnumerable<TicketDto>>(ticketDM);
             return ticketDto;
         }
 
         public void CreateTask(TicketDto ticketDto)
         {
-            var ticket = _mapper.Map<Ticket>(ticketDto);
+            var ticketDM = _mapper.Map<IEnumerable<TicketDM>>(ticketDto);
+            var ticket = _mapper.Map<TicketEntity>(ticketDM);
             _taskRepository.Add(ticket);
         }
     }

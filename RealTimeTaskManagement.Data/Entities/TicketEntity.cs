@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RealTimeTaskManagement.Data.Entities
 {
-    public class Ticket : BaseEntity
+    public class TicketEntity : BaseEntity
     {
         public Priority Priority { get; set; }
         public Guid Assignee { get; set; }
@@ -16,6 +16,6 @@ namespace RealTimeTaskManagement.Data.Entities
         public DateTimeOffset Deadline { get; set; }
         public TimeSpan LoggedMinutes { get; set; }
         public int? ParentTicketId { get; set; }
-        public Ticket? ParentTicket { get; set; }
+        public TicketEntity? ParentTicket { get; set; }
     }
 }

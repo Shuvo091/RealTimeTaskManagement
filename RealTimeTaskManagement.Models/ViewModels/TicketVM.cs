@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RealTimeTaskManagement.Models.Dto
+namespace RealTimeTaskManagement.Models.ViewModels
 {
-    public class TicketDto : BaseDto
+    public class TicketVM : BaseVM
     {
         public Priority Priority { get; set; }
         public Guid Assignee { get; set; }

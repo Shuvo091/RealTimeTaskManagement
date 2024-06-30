@@ -4,9 +4,9 @@ using RealTimeTaskManagement.Data.Entities;
 
 namespace RealTimeTaskManagement.Data.Context
 {
-    public class RealTimeTaskManagementDbContext : IdentityDbContext<User>
+    public class RealTimeTaskManagementDbContext : IdentityDbContext<UserEntity>
     {
-        public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<TicketEntity> Tickets { get; set; }
 
         public RealTimeTaskManagementDbContext(DbContextOptions<RealTimeTaskManagementDbContext> options)
             : base(options)

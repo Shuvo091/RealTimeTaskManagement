@@ -11,15 +11,15 @@ using System.Threading.Tasks;
 
 namespace RealTimeTaskManagement.Services.Mapper
 {
-    public class TicketProfile : Profile
+    public class UserProfile : Profile
     {
-        public TicketProfile()
+        public UserProfile()
         {
-            CreateMap<TicketEntity, TicketDM>()
+            CreateMap<UserEntity, UserDM>()
             .ReverseMap();
-            CreateMap<TicketDM, TicketDto>()
+            CreateMap<UserDM, UserDto>()
             .ReverseMap();
-            CreateMap<TicketDM, TicketVM>()
+            CreateMap<UserDM, UserVM>()
             .ReverseMap();
         }
     }

@@ -12,12 +12,12 @@ namespace RealTimeTaskManagement.Data.Repositories
             _context = context;
         }
 
-        public IEnumerable<Ticket> GetAll()
+        public IEnumerable<TicketEntity> GetAll()
         {
             return _context.Tickets.ToList();
         }
 
-        public void Add(Ticket ticket)
+        public void Add(TicketEntity ticket)
         {
             _context.Tickets.Add(ticket);
             _context.SaveChanges();

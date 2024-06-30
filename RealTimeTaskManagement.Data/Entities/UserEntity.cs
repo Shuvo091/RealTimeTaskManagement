@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RealTimeTaskManagement.Data.Entities
 {
-    public class User : IdentityUser
+    public class UserEntity : IdentityUser
     {
         [PersonalData]
         public string FirstName { get; set; } = null!;

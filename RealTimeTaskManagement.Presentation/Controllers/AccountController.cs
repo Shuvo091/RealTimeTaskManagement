@@ -9,10 +9,10 @@ namespace RealTimeTaskManagement.Presentation.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<UserEntity> _userManager;
+        private readonly SignInManager<UserEntity> _signInManager;
         private readonly RealTimeTaskManagementDbContext _applicationDbContext;
-        public AccountController(UserManager<User> userManager, SignInManager<User> signManager, RealTimeTaskManagementDbContext applicationDbContext)
+        public AccountController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signManager, RealTimeTaskManagementDbContext applicationDbContext)
         {
             _userManager = userManager;
             _signInManager = signManager;
