@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RealTimeTaskManagement.Common\RealTimeTaskManagement.Common.csproj" />
     <ProjectReference Include="..\RealTimeTaskManagement.Models\RealTimeTaskManagement.Models.csproj" />
   </ItemGroup>
 

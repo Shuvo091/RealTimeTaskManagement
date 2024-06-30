@@ -25,8 +25,8 @@ namespace RealTimeTaskManagement.Services
 
         public IEnumerable<TicketDto> GetAllTasks()
         {
-            var ticket = _taskRepository.GetAll();
-            var ticketDM = _mapper.Map<IEnumerable<TicketDM>>(ticket);
+            var ticketEntity = _taskRepository.GetAll();
+            var ticketDM = _mapper.Map<IEnumerable<TicketDM>>(ticketEntity);
             var ticketDto = _mapper.Map<IEnumerable<TicketDto>>(ticketDM);
             return ticketDto;
         }
@@ -34,8 +34,8 @@ namespace RealTimeTaskManagement.Services
         public void CreateTask(TicketDto ticketDto)
         {
             var ticketDM = _mapper.Map<IEnumerable<TicketDM>>(ticketDto);
-            var ticket = _mapper.Map<TicketEntity>(ticketDM);
-            _taskRepository.Add(ticket);
+            var ticketEntity = _mapper.Map<TicketEntity>(ticketDM);
+            _taskRepository.Add(ticketEntity);
         }
     }
 }

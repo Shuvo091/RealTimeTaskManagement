@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeTaskManagement.Presentation", "RealTimeTaskManagement.Presentation\RealTimeTaskManagement.Presentation.csproj", "{79937449-AE94-474E-9C30-273A82F2DB64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealTimeTaskManagement.Presentation", "RealTimeTaskManagement.Presentation\RealTimeTaskManagement.Presentation.csproj", "{79937449-AE94-474E-9C30-273A82F2DB64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeTaskManagement.Services", "RealTimeTaskManagement.Services\RealTimeTaskManagement.Services.csproj", "{F5917E75-8DBE-442C-A1AF-AC5871AFDF42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealTimeTaskManagement.Services", "RealTimeTaskManagement.Services\RealTimeTaskManagement.Services.csproj", "{F5917E75-8DBE-442C-A1AF-AC5871AFDF42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeTaskManagement.Data", "RealTimeTaskManagement.Data\RealTimeTaskManagement.Data.csproj", "{17BEF2B3-EB62-4E2A-B9E2-177EF5D126FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealTimeTaskManagement.Data", "RealTimeTaskManagement.Data\RealTimeTaskManagement.Data.csproj", "{17BEF2B3-EB62-4E2A-B9E2-177EF5D126FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeTaskManagement.Models", "RealTimeTaskManagement.Models\RealTimeTaskManagement.Models.csproj", "{7AA83556-0497-49FB-A429-2409DCD735BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealTimeTaskManagement.Models", "RealTimeTaskManagement.Models\RealTimeTaskManagement.Models.csproj", "{7AA83556-0497-49FB-A429-2409DCD735BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeTaskManagement.Common", "RealTimeTaskManagement.Common\RealTimeTaskManagement.Common.csproj", "{254BD8A1-25CF-44AC-B4B1-ACB3B5576AFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{7AA83556-0497-49FB-A429-2409DCD735BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AA83556-0497-49FB-A429-2409DCD735BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AA83556-0497-49FB-A429-2409DCD735BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{254BD8A1-25CF-44AC-B4B1-ACB3B5576AFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{254BD8A1-25CF-44AC-B4B1-ACB3B5576AFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{254BD8A1-25CF-44AC-B4B1-ACB3B5576AFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{254BD8A1-25CF-44AC-B4B1-ACB3B5576AFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
