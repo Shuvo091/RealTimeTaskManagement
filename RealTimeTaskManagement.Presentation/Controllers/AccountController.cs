@@ -153,7 +153,16 @@ namespace RealTimeTaskManagement.Controllers
                         return View(resetPasswordModel);
                     }
                     user.EmailConfirmed = true;
-                    //TODO: Set password here
+                    var updateResult = await _userManager.UpdateAsync(user);
+                    if (!updateResult.Succeeded)
+                    {
+                        // Handle update errors if necessary
+                        foreach (var error in updateResult.Errors)
+                        {
+                            ModelState.AddModelError("", error.Description);
+                        }
+                        return View(resetPasswordModel);
+                    }
                 }
                 return RedirectToAction(nameof(SetOrResetPasswordConfirmation), new { isReset = resetPasswordModel.IsReset });
             }
@@ -173,6 +182,13 @@ namespace RealTimeTaskManagement.Controllers
         {
             var model = new ChangeUserPasswordVM();
             return View(model);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult Profile()
+        {
+            return View();
         }
 
         [HttpPost]
