@@ -1,4 +1,4 @@
-namespace RealTimeTaskManagement.Presentation.Models
+namespace RealTimeTaskManagement.Models.ViewModels
 {
     public class ErrorViewModel
     {

@@ -11,7 +11,7 @@ using RealTimeTaskManagement.Data.Context;
 
 namespace RealTimeTaskManagement.Data.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(RealTimeTaskManagementDbContext))]
     [Migration("20240628134256_init")]
     partial class init
     {

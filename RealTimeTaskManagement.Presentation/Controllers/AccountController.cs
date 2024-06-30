@@ -11,8 +11,8 @@ namespace RealTimeTaskManagement.Presentation.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        private readonly ApplicationDbContext _applicationDbContext;
-        public AccountController(UserManager<User> userManager, SignInManager<User> signManager, ApplicationDbContext applicationDbContext)
+        private readonly RealTimeTaskManagementDbContext _applicationDbContext;
+        public AccountController(UserManager<User> userManager, SignInManager<User> signManager, RealTimeTaskManagementDbContext applicationDbContext)
         {
             _userManager = userManager;
             _signInManager = signManager;

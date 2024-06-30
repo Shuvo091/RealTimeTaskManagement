@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using RealTimeTaskManagement.Presentation.Models;
+using RealTimeTaskManagement.Models.ViewModels;
 using System.Diagnostics;
 
 namespace RealTimeTaskManagement.Presentation.Controllers

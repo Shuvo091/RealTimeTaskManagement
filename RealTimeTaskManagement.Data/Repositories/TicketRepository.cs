@@ -5,9 +5,9 @@ namespace RealTimeTaskManagement.Data.Repositories
 {
     public class TicketRepository : ITicketRepository
     {
-        private readonly ApplicationDbContext _context;
+        private readonly RealTimeTaskManagementDbContext _context;
 
-        public TicketRepository(ApplicationDbContext context)
+        public TicketRepository(RealTimeTaskManagementDbContext context)
         {
             _context = context;
         }
