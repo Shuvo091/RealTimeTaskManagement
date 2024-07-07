@@ -20,6 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\RealTimeTaskManagement.Data\RealTimeTaskManagement.Data.csproj" />
     <ProjectReference Include="..\RealTimeTaskManagement.Models\RealTimeTaskManagement.Models.csproj" />
+    <ProjectReference Include="..\RealTimeTaskManagement.Payment.PhonePe\RealTimeTaskManagement.Payment.PhonePe.csproj" />
     <ProjectReference Include="..\RealTimeTaskManagement.Payment.RazorPay\RealTimeTaskManagement.Payment.RazorPay.csproj" />
     <ProjectReference Include="..\RealTimeTaskManagement.Services\RealTimeTaskManagement.Services.csproj" />
   </ItemGroup>

@@ -20,3 +20,12 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.payment-form {
+    max-width: 500px;
+    margin: auto;
+    padding: 2rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
