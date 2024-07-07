@@ -1,0 +1,17 @@
+﻿@model RealTimeTaskManagement.Payment.RazorPay.PaymentDetails;
+@{
+    ViewData["Title"] = "Payment Failure";
+}
+
+<div class="container mt-5">
+    <div class="alert alert-danger text-center">
+        <h2 class="alert-heading">Payment Failed!</h2>
+        <p>Unfortunately, your payment could not be processed. Please try again.</p>
+        <hr>
+        <p><strong>Payment ID:</strong> @Model.PaymentId</p>
+        <p><strong>Order ID:</strong> @Model.OrderId</p>
+        <p><strong>Signature:</strong> @Model.Signature</p>
+        <hr>
+        <a href="/RazorPay" class="btn btn-primary">Try Again</a>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "Payment - Razor Pay";
+}
+<style>
+    .payment-form {
+        max-width: 500px;
+        margin: auto;
+        padding: 2rem;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+    }
+</style>
+<div class="container mt-5">
+    <div class="payment-form shadow-sm p-4">
+        <h2 class="mb-4 text-center">Razor Pay</h2>
+        <form>
+            <div class="mb-3">
+                <label for="PaymentAmount" class="form-label">Payment Amount (₹)</label>
+                <input type="number" class="form-control" id="PaymentAmount" name="PaymentAmount" step="0.01" min="0" required />
+            </div>
+            <div class="text-center">
+                <input onclick="javascript: return processPayment_onclick();" type="button" value="Process Payment" class="btn btn-primary" />
+            </div>
+        </form>
+        <form asp-controller="RazorPay" asp-action="RazorPayReturn" method="post" asp-antiforgery="true">
+            <input type="hidden" id="PaymentId" name="PaymentId" />
+            <input type="hidden" id="OrderId" name="OrderId" />
+            <input type="hidden" id="Signature" name="Signature" />
+            <button type="submit" id="rzp-paymentresponse" class="btn btn-primary" hidden>Submit</button>
+        </form>
+    </div>
+</div>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script type="text/javascript">
+    function processPayment_onclick() {
+        let amount = document.getElementById("PaymentAmount").value;
+        $.ajax({
+            url: '/RazorPay/RazorPay',
+            type: 'POST',
+            data: {
+                "paymentAmount": amount
+            },
+            success: function (response) {
+                var options = {
+                    "key": response.razorpayKey,
+                    "amount": response.amount,
+                    "currency": response.currency,
+                    "name": response.name,
+                    "description": response.description,
+                    "image": "https://avatars.githubusercontent.com/u/65504583?v=4",
+                    "order_id": response.orderId,
+                    "handler": function (response) {
+                        document.getElementById('PaymentId').value = response.razorpay_payment_id;
+                        document.getElementById('OrderId').value = response.razorpay_order_id;
+                        document.getElementById('Signature').value = response.razorpay_signature;
+                        document.getElementById('rzp-paymentresponse').click();
+                    },
+                    "prefill": {
+                        "name": response.name,
+                        "email": response.email,
+                        "contact": response.phoneNumber
+                    },
+                    "notes": {
+                        "address": response.address
+                    },
+                    "theme": {
+                        "color": "#F37254"
+                    }
+                };
+                var rzp1 = new Razorpay(options);
+                rzp1.open();
+            },
+            error: function (error) {
+                // Handle error
+            }
+        });
+    }
+</script>
+
