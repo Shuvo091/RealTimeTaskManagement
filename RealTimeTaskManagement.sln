@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealTimeTaskManagement.Mode
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealTimeTaskManagement.Common", "RealTimeTaskManagement.Common\RealTimeTaskManagement.Common.csproj", "{254BD8A1-25CF-44AC-B4B1-ACB3B5576AFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeTaskManagement.Payment.RazorPay", "RealTimeTaskManagement.Payment.RazorPay\RealTimeTaskManagement.Payment.RazorPay.csproj", "{EB5623A8-9E0A-40AA-9E16-C4A5DC55F260}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealTimeTaskManagement.Payment.RazorPay", "RealTimeTaskManagement.Payment.RazorPay\RealTimeTaskManagement.Payment.RazorPay.csproj", "{EB5623A8-9E0A-40AA-9E16-C4A5DC55F260}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeTaskManagement.Payment.PhonePe", "RealTimeTaskManagement.Payment.PhonePe\RealTimeTaskManagement.Payment.PhonePe.csproj", "{E064A8D5-C513-4E23-A6CA-7F97C070904B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealTimeTaskManagement.Payment.PhonePe", "RealTimeTaskManagement.Payment.PhonePe\RealTimeTaskManagement.Payment.PhonePe.csproj", "{E064A8D5-C513-4E23-A6CA-7F97C070904B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeTaskManagement.Tests", "RealTimeTaskManagement.Tests\RealTimeTaskManagement.Tests.csproj", "{ECCB9BA0-847C-4B0B-80D7-DCE11932D3F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{E064A8D5-C513-4E23-A6CA-7F97C070904B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E064A8D5-C513-4E23-A6CA-7F97C070904B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E064A8D5-C513-4E23-A6CA-7F97C070904B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECCB9BA0-847C-4B0B-80D7-DCE11932D3F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECCB9BA0-847C-4B0B-80D7-DCE11932D3F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECCB9BA0-847C-4B0B-80D7-DCE11932D3F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECCB9BA0-847C-4B0B-80D7-DCE11932D3F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
