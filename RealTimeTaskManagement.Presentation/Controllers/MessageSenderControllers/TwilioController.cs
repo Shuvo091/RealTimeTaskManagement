@@ -24,7 +24,7 @@ namespace RealTimeTaskManagement.Presentation.Controllers.PaymentControllers
         public IActionResult SendWhatsAppNotification(WhatsAppMessagePayLoad payLoad)
         {
             payLoad.AccountSid = "ACb8a3ffdd5972f27c8b9c9c0483918fa3";
-            payLoad.AuthToken = "0753d38edf9e2eb050fc9658f3e1721f";
+            payLoad.AuthToken = "26be3648c02bac8d29188495f931bbb9";
             payLoad.FromNumber = "+14155238886";
 
             var waClient = new WhatsAppMessageSender();
@@ -35,7 +35,7 @@ namespace RealTimeTaskManagement.Presentation.Controllers.PaymentControllers
         public IActionResult SendMobileOTP(MobileMessagePayLoad payLoad)
         {
             payLoad.AccountSid = "ACb8a3ffdd5972f27c8b9c9c0483918fa3";
-            payLoad.AuthToken = "0753d38edf9e2eb050fc9658f3e1721f";
+            payLoad.AuthToken = "26be3648c02bac8d29188495f931bbb9";
             payLoad.ServiceSid = "VAa65721b718ce9b7fd5b1fd18b12bba09"; // Need proper SID. Free accounts cannot have WhatsApp sender.
             payLoad.Channel = "sms"; // "sms" for mobile OTP
 

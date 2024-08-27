@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Payment Result";
+    string status = ViewBag.Status as string;
+    string message = ViewBag.Message as string;
+    long? amount = ViewBag.Amount as long?;
+    string currency = ViewBag.Currency as string;
+    string paymentMethod = ViewBag.PaymentMethod as string;
+    string clientSecret = ViewBag.ClientSecret as string;
+}
+
+<div class="container mt-5">
+    <div class="result-form shadow-sm p-4 text-center">
+        <h2 class="mb-4">@Html.DisplayFor(model => status) Payment</h2>
+        @if (status == "success")
+        {
+            <p>Your payment was successful! Thank you for your purchase.</p>
+            <p><strong>Amount:</strong> @amount @currency</p>
+            <p><strong>Payment Method:</strong> @paymentMethod</p>
+            <p><strong>Client Secret:</strong> @clientSecret</p>
+        }
+        else if (status == "error")
+        {
+            <p>There was an error processing your payment: @Html.DisplayFor(model => message)</p>
+        }
+        <a href="/" class="btn btn-primary mt-3">Go to Home</a>
+    </div>
+</div>

@@ -4,6 +4,7 @@ using RealTimeTaskManagement.Data;
 using RealTimeTaskManagement.Data.Context;
 using RealTimeTaskManagement.Data.Entities;
 using RealTimeTaskManagement.Data.Repositories;
+using RealTimeTaskManagement.Payment.Stripe;
 using RealTimeTaskManagement.Services;
 using RealTimeTaskManagement.Services.Interfaces;
 
@@ -34,6 +35,8 @@ builder.Services.AddAuthorization(options =>
 });
 builder.Services.AddScoped<ITicketRepository, TicketRepository>();
 builder.Services.AddScoped<ITicketService, TicketService>();
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
+builder.Services.AddTransient<StripeClient>();
 
 var app = builder.Build();
 
