@@ -18,17 +18,34 @@ namespace RealTimeTaskManagement.Presentation.Controllers
             _ticketService = ticketService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var tasks = _ticketService.GetAllTasks();
             return View(tasks);
         }
 
-        [HttpPost]
-        public IActionResult Create(TicketDto task)
+        // Action to display the create task form
+        public IActionResult Create()
         {
-            _ticketService.CreateTask(task);
-            return RedirectToAction("Index");
+            return View();
+        }
+
+        // Action to handle the form submission for creating a new task
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(TicketDto ticketDto)
+        {
+            if (ModelState.IsValid)
+            {
+                // Create the new task
+                _ticketService.CreateTask(ticketDto);
+
+                // Redirect to the index action after creating the task
+                return RedirectToAction("Index");
+            }
+
+            // If model state is not valid, return to the Create view with validation errors
+            return View(ticketDto);
         }
 
         [Authorize(Roles = $"{Role.Admin},{Role.Manager}")]

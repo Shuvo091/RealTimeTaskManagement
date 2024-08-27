@@ -1,1 +1,37 @@
-﻿Show tickets here
+﻿@model IEnumerable<RealTimeTaskManagement.Models.Dto.TicketDto>
+
+@{
+    ViewData["Title"] = "All Tasks";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Task ID</th>
+            <th>Priority</th>
+            <th>Assignee</th>
+            <th>Reporter</th>
+            <th>Created On</th>
+            <th>Deadline</th>
+            <th>Logged Minutes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model)
+        {
+            <tr>
+                <td>@task.Id</td>
+                <td>@task.Priority</td>
+                <td>@task.Assignee</td>
+                <td>@task.Reporter</td>
+                <td>@task.CreatedOn.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                <td>@task.Deadline.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                <td>@task.LoggedMinutes</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Create", "Ticket")" class="btn btn-primary">Create New Task</a>

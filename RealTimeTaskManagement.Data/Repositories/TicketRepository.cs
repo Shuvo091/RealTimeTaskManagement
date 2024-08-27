@@ -19,6 +19,9 @@ namespace RealTimeTaskManagement.Data.Repositories
 
         public void Add(TicketEntity ticket)
         {
+            ticket.EnteredOn = DateTime.UtcNow;
+            ticket.ModifiedOn = DateTime.UtcNow;
+            ticket.LoggedMinutes = TimeSpan.FromMinutes(ticket.LoggedMinutes.Days);
             _context.Tickets.Add(ticket);
             _context.SaveChanges();
         }

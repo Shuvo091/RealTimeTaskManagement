@@ -1,14 +1,11 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Caching.Distributed;
 using RealTimeTaskManagement.Data.Entities;
 using RealTimeTaskManagement.Data.Repositories;
 using RealTimeTaskManagement.Models.DomainModels;
 using RealTimeTaskManagement.Models.Dto;
 using RealTimeTaskManagement.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace RealTimeTaskManagement.Services
 {
@@ -16,11 +13,13 @@ namespace RealTimeTaskManagement.Services
     {
         private readonly ITicketRepository _taskRepository;
         private readonly IMapper _mapper;
+        private readonly IDistributedCache _cache;
 
-        public TicketService(ITicketRepository taskRepository, IMapper mapper)
+        public TicketService(ITicketRepository taskRepository, IMapper mapper, IDistributedCache cache)
         {
             _taskRepository = taskRepository;
             _mapper = mapper;
+            _cache = cache;
         }
 
         public IEnumerable<TicketDto> GetAllTasks()
@@ -31,9 +30,31 @@ namespace RealTimeTaskManagement.Services
             return ticketDto;
         }
 
+        public async Task<IEnumerable<TicketDto>> GetAllTasks(int taskId)
+        {
+            string cacheKey = $"task_{taskId}";
+            string? cachedTask = await _cache.GetStringAsync(cacheKey);
+
+            if (!string.IsNullOrEmpty(cachedTask))
+            {
+                IEnumerable<TicketDto> tickets = JsonSerializer.Deserialize<IEnumerable<TicketDto>>(cachedTask);
+                return tickets!;
+            }
+            var ticketEntity = _taskRepository.GetAll();
+            var ticketDM = _mapper.Map<IEnumerable<TicketDM>>(ticketEntity);
+            var ticketDto = _mapper.Map<IEnumerable<TicketDto>>(ticketDM);
+            string taskJson = JsonSerializer.Serialize(ticketDto);
+            var cacheOptions = new DistributedCacheEntryOptions
+            {
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10)
+            };
+            await _cache.SetStringAsync(cacheKey, taskJson, cacheOptions);
+            return ticketDto;
+        }
+
         public void CreateTask(TicketDto ticketDto)
         {
-            var ticketDM = _mapper.Map<IEnumerable<TicketDM>>(ticketDto);
+            var ticketDM = _mapper.Map<TicketDM>(ticketDto);
             var ticketEntity = _mapper.Map<TicketEntity>(ticketDM);
             _taskRepository.Add(ticketEntity);
         }
