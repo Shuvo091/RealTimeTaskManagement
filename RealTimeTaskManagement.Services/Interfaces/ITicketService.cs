@@ -9,7 +9,7 @@ namespace RealTimeTaskManagement.Services.Interfaces
 {
     public interface ITicketService
     {
-        IEnumerable<TicketDto> GetAllTasks();
+        Task<IEnumerable<TicketDto>> GetAllTasks();
         Task<IEnumerable<TicketDto>> GetAllTasks(int taskId);
         void CreateTask(TicketDto task);
     }

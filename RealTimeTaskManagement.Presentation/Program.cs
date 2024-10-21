@@ -7,6 +7,7 @@ using RealTimeTaskManagement.Data.Repositories;
 using RealTimeTaskManagement.Payment.Stripe;
 using RealTimeTaskManagement.Services;
 using RealTimeTaskManagement.Services.Interfaces;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,8 @@ builder.Services.AddIdentity<UserEntity, IdentityRole>(
             .AddEntityFrameworkStores<RealTimeTaskManagementDbContext>()
             .AddDefaultTokenProviders();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect("localhost"));
+builder.Services.AddHttpClient();
 // Add Razor Pages
 builder.Services.AddRazorPages();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

@@ -22,9 +22,9 @@ namespace RealTimeTaskManagement.Services
             _cache = cache;
         }
 
-        public IEnumerable<TicketDto> GetAllTasks()
+        public async Task<IEnumerable<TicketDto>> GetAllTasks()
         {
-            var ticketEntity = _taskRepository.GetAll();
+            var ticketEntity = await _taskRepository.GetAll();
             var ticketDM = _mapper.Map<IEnumerable<TicketDM>>(ticketEntity);
             var ticketDto = _mapper.Map<IEnumerable<TicketDto>>(ticketDM);
             return ticketDto;

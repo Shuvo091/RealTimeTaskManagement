@@ -5,6 +5,11 @@ using Microsoft.AspNetCore.Authorization;
 using RealTimeTaskManagement.Models.Enums;
 using RealTimeTaskManagement.Common.Extensions;
 using RealTimeTaskManagement.Common.Utilities;
+using StackExchange.Redis;
+using System.Net.Http.Headers;
+using Role = RealTimeTaskManagement.Common.Utilities.Role;
+using System.Diagnostics;
+using System.Text.Json;
 
 namespace RealTimeTaskManagement.Presentation.Controllers
 {
@@ -12,15 +17,34 @@ namespace RealTimeTaskManagement.Presentation.Controllers
     public class TicketController : Controller
     {
         private readonly ITicketService _ticketService;
+        private readonly HttpClient _client;
+        private readonly IDatabase _redis;
 
-        public TicketController(ITicketService ticketService)
+        public TicketController(ITicketService ticketService, HttpClient client, IConnectionMultiplexer muxer)
         {
             _ticketService = ticketService;
+            _client = client;
+            _client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("RealTimeTaskManagement", "1.0"));
+            _redis = muxer.GetDatabase();
         }
 
         public async Task<IActionResult> Index()
         {
-            var tasks = _ticketService.GetAllTasks();
+            string json;
+            var watch = Stopwatch.StartNew();
+            var keyName = $"getTickets";
+            json = await _redis.StringGetAsync(keyName);
+            if (string.IsNullOrEmpty(json))
+            {
+                json = await GetTasksStr();
+                var setTask = _redis.StringSetAsync(keyName, json);
+                var expireTask = _redis.KeyExpireAsync(keyName, TimeSpan.FromSeconds(3600));
+                await Task.WhenAll(setTask, expireTask);
+            }
+
+            var tasks =
+                JsonSerializer.Deserialize<IEnumerable<TicketDto>>(json);
+            watch.Stop();
             return View(tasks);
         }
 
@@ -58,6 +82,12 @@ namespace RealTimeTaskManagement.Presentation.Controllers
         public IActionResult UserOnly()
         {
             return View();
+        }
+
+        private async Task<string> GetTasksStr()
+        {
+            var tasks = await _ticketService.GetAllTasks();
+            return JsonSerializer.Serialize(tasks);
         }
     }
 }

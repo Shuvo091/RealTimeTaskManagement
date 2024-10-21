@@ -1,4 +1,5 @@
-﻿using RealTimeTaskManagement.Data.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using RealTimeTaskManagement.Data.Context;
 using RealTimeTaskManagement.Data.Entities;
 
 namespace RealTimeTaskManagement.Data.Repositories
@@ -12,9 +13,9 @@ namespace RealTimeTaskManagement.Data.Repositories
             _context = context;
         }
 
-        public IEnumerable<TicketEntity> GetAll()
+        public async Task<IEnumerable<TicketEntity>> GetAll()
         {
-            return _context.Tickets.ToList();
+            return await _context.Tickets.ToListAsync();
         }
 
         public void Add(TicketEntity ticket)

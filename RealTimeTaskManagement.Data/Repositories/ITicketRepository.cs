@@ -9,7 +9,7 @@ namespace RealTimeTaskManagement.Data.Repositories
 {
     public interface ITicketRepository
     {
-        IEnumerable<TicketEntity> GetAll();
+        Task<IEnumerable<TicketEntity>> GetAll();
         void Add(TicketEntity ticket);
     }
 }
