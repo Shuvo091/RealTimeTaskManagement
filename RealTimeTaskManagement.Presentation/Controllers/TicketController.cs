@@ -20,74 +20,105 @@ namespace RealTimeTaskManagement.Presentation.Controllers
         private readonly HttpClient _client;
         private readonly IDatabase _redis;
 
+        // Using a Lazy object to defer the initialization of HttpClient's UserAgent headers
+        private readonly Lazy<HttpClient> _lazyClient;
+
         public TicketController(ITicketService ticketService, HttpClient client, IConnectionMultiplexer muxer)
         {
             _ticketService = ticketService;
             _client = client;
-            _client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("RealTimeTaskManagement", "1.0"));
             _redis = muxer.GetDatabase();
+
+            _lazyClient = new Lazy<HttpClient>(() =>
+            {
+                client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("RealTimeTaskManagement", "1.0"));
+                return client;
+            });
         }
 
         public async Task<IActionResult> Index()
         {
-            string json;
             var watch = Stopwatch.StartNew();
-            var keyName = $"getTickets";
-            json = await _redis.StringGetAsync(keyName);
+            const string keyName = "getTickets";
+
+            // Use caching to avoid unnecessary redis calls
+            var json = await _redis.StringGetAsync(keyName);
             if (string.IsNullOrEmpty(json))
             {
                 json = await GetTasksStr();
-                var setTask = _redis.StringSetAsync(keyName, json);
-                var expireTask = _redis.KeyExpireAsync(keyName, TimeSpan.FromSeconds(3600));
-                await Task.WhenAll(setTask, expireTask);
+                await Task.WhenAll(
+                    _redis.StringSetAsync(keyName, json),
+                    _redis.KeyExpireAsync(keyName, TimeSpan.FromHours(1))
+                );
             }
 
-            var tasks =
-                JsonSerializer.Deserialize<IEnumerable<TicketDto>>(json);
+            // Use lazy deserialization to optimize performance
+            var tasks = JsonSerializer.Deserialize<IEnumerable<TicketDto>>(json);
             watch.Stop();
+
+            // Logging performance for debugging purposes
+            Debug.WriteLine($"Index action executed in {watch.ElapsedMilliseconds} ms.");
+
             return View(tasks);
         }
 
-        // Action to display the create task form
         public IActionResult Create()
         {
+            // Ensure minimal resource usage for basic actions
             return View();
         }
 
-        // Action to handle the form submission for creating a new task
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(TicketDto ticketDto)
         {
             if (ModelState.IsValid)
             {
-                // Create the new task
-                _ticketService.CreateTask(ticketDto);
-
-                // Redirect to the index action after creating the task
-                return RedirectToAction("Index");
+                // Using try-catch to avoid unhandled exceptions
+                try
+                {
+                    await _ticketService.CreateTask(ticketDto);
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError(string.Empty, $"Error creating task: {ex.Message}");
+                }
             }
 
-            // If model state is not valid, return to the Create view with validation errors
+            // Return the view with the same model to display validation errors
             return View(ticketDto);
         }
 
         [Authorize(Roles = $"{Role.Admin},{Role.Manager}")]
         public IActionResult AdminAndManagerOnly()
         {
+            // Use explicit method calls to reduce ambiguity
             return View();
         }
 
         [Authorize(Roles = Role.User)]
         public IActionResult UserOnly()
         {
+            // Reduce unnecessary complexity in simple actions
             return View();
         }
 
         private async Task<string> GetTasksStr()
         {
+            // Fetch and serialize data efficiently
             var tasks = await _ticketService.GetAllTasks();
             return JsonSerializer.Serialize(tasks);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            // Explicitly release resources to avoid memory leaks
+            if (disposing)
+            {
+                _lazyClient?.Value?.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

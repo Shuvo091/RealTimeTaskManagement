@@ -52,7 +52,7 @@ namespace RealTimeTaskManagement.Services
             return ticketDto;
         }
 
-        public void CreateTask(TicketDto ticketDto)
+        public async Task CreateTask(TicketDto ticketDto)
         {
             var ticketDM = _mapper.Map<TicketDM>(ticketDto);
             var ticketEntity = _mapper.Map<TicketEntity>(ticketDM);

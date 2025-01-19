@@ -11,6 +11,6 @@ namespace RealTimeTaskManagement.Services.Interfaces
     {
         Task<IEnumerable<TicketDto>> GetAllTasks();
         Task<IEnumerable<TicketDto>> GetAllTasks(int taskId);
-        void CreateTask(TicketDto task);
+        Task CreateTask(TicketDto task);
     }
 }
