@@ -3,12 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RealTimeTaskManagement.Payment.RazorPay;
 using RealTimeTaskManagement.Presentation.Controllers.PaymentControllers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace RealTimeTaskManagement.Tests.Controllers
 {
     public class RazorPayControllerTest
