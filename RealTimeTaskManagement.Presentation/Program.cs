@@ -1,3 +1,4 @@
+using ChatService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RealTimeTaskManagement.Data;
@@ -36,6 +37,7 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("UserPolicy", policy => policy.RequireRole("User"));
     options.AddPolicy("ManagerPolicy", policy => policy.RequireRole("Manager"));
 });
+builder.Services.AddSignalR();
 builder.Services.AddScoped<ITicketRepository, TicketRepository>();
 builder.Services.AddScoped<ITicketService, TicketService>();
 builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
@@ -64,6 +66,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.MapHub<ChatHub>("/chatHub");
 
 app.UseAuthentication();
 app.UseAuthorization();

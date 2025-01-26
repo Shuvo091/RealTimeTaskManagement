@@ -10,6 +10,7 @@ using System.Net.Http.Headers;
 using Role = RealTimeTaskManagement.Common.Utilities.Role;
 using System.Diagnostics;
 using System.Text.Json;
+using System.Security.Claims;
 
 namespace RealTimeTaskManagement.Presentation.Controllers
 {
@@ -72,6 +73,11 @@ namespace RealTimeTaskManagement.Presentation.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(TicketDto ticketDto)
         {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            ticketDto.EnteredById = userId;
+            ticketDto.ModifiedById = userId;
+            ticketDto.CreatedOn = DateTime.UtcNow;
+            ticketDto.ModifiedOn = DateTime.UtcNow;
             if (ModelState.IsValid)
             {
                 // Using try-catch to avoid unhandled exceptions

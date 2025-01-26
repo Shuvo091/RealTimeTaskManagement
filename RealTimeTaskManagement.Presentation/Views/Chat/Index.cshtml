@@ -1,0 +1,43 @@
+﻿@model RealTimeTaskManagement.Models.ViewModels.ChatViewModel
+
+@{
+    ViewData["Title"] = "Group Chat";
+}
+
+<h2>Group Chat</h2>
+
+<div id="chatBox">
+    <ul id="messagesList">
+        @foreach (var message in Model.Messages)
+        {
+                <li>@message.UserId: @message.Message (@message.Timestamp.ToString("g"))</li>
+        }
+    </ul>
+</div>
+
+<div>
+    <input type="text" id="messageInput" placeholder="Type your message" />
+    <button id="sendButton">Send</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"></script>
+<script>
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/chatHub")
+        .build();
+
+    connection.on("ReceiveMessage", (userName, message) => {
+        const msg = document.createElement("li");
+        msg.textContent = `${userName}: ${message}`;
+        document.getElementById("messagesList").appendChild(msg);
+    });
+
+    connection.start().catch(err => console.error(err.toString()));
+
+    document.getElementById("sendButton").addEventListener("click", () => {
+        const message = document.getElementById("messageInput").value;
+        connection.invoke("SendMessage", message)
+            .catch(err => console.error(err.toString()));
+        document.getElementById("messageInput").value = "";
+    });
+</script>

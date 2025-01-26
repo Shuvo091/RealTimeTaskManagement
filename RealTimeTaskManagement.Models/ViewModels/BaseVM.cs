@@ -9,8 +9,8 @@ namespace RealTimeTaskManagement.Models.ViewModels
     public class BaseVM
     {
         public int Id { get; set; }
-        public Guid EnteredById { get; set; }
-        public Guid ModifiedById { get; set; }
+        public string EnteredById { get; set; }
+        public string ModifiedById { get; set; }
         public DateTimeOffset EnteredOn { get; set; }
         public DateTimeOffset ModifiedOn { get; set; }
     }
