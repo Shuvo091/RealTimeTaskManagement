@@ -49,7 +49,7 @@ namespace RealTimeTaskManagement.Presentation.Controllers
                 json = await GetTasksStr();
                 await Task.WhenAll(
                     _redis.StringSetAsync(keyName, json),
-                    _redis.KeyExpireAsync(keyName, TimeSpan.FromHours(1))
+                    _redis.KeyExpireAsync(keyName, TimeSpan.FromSeconds(1))
                 );
             }
 
